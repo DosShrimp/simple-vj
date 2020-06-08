@@ -9,7 +9,7 @@ void settings() {
 
 void setup() {
   
-  String[] args = {"--location=100, 200", "SecondApplet"};
+  String[] args = {"SecondApplet"};
   sa = new Controller();
   PApplet.runSketch(args, sa);
   
@@ -28,10 +28,10 @@ void draw() {
     effect2();
   }
   if(sa.judge3) {
-    effect2();
+    effect3();
   }
   if(sa.judge4) {
-    effect1();
+    effect4();
   }
   
   tempo(sa.BPM);
@@ -57,6 +57,25 @@ void effect2() {
   rect(120, 120, 240, 240);
 }
 
+void effect3() {
+  float t = map(hoge, fps, 0, 1.0, 0.0);
+  color c1 = color(255, 0, 255);
+  color c2 = color(255, 255, 255);
+  color lc = lerpColor(c1, c2, t);
+  stroke(0);
+  fill(lc);
+  ellipse(240, 240, 200, 200);
+}
+
+void effect4() {
+  float t = map(hoge, fps, 0, 1.0, 0.0);
+  color c1 = color(255, 0, 255);
+  color c2 = color(255, 255, 255);
+  color lc = lerpColor(c1, c2, t);
+  stroke(0);
+  fill(lc);
+  ellipse(240, 240, 40, 40);
+}
 
 void tempo(float _BPM) {
    huga = _BPM / 60;
