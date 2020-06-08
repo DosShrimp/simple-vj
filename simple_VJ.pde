@@ -1,83 +1,40 @@
-import controlP5.*;
-
-ControlP5 slider, button1, button2, button3, button4;
-
-float BPM;
 float fps = 60;
-
 float hoge, huga;
-boolean judge = false;
-boolean judge2 = false;
-boolean judge3 = false;
-boolean judge4 = false;
+Controller sa;
+
+//メインウィンドウ
+void settings() {
+  size(480, 480);
+}
 
 void setup() {
-  size(480, 640); 
   
-  //スライダー
-  slider = new ControlP5(this);
-  slider.addSlider("BPM")
-    .setRange(40, 300)
-    .setValue(60)
-    .setPosition(30, 510)
-    .setSize(20, 100)
-    .setNumberOfTickMarks(259);
-  
-  slider.getController("BPM")
-    .getValueLabel();
-    
-  //ボタン1
-  button1 = new ControlP5(this);
-  button1.addButton("button1")
-    .setLabel("effect_1")
-    .setPosition(100, 510)
-    .setSize(100, 40);
-    
-  //ボタン2
-  button2 = new ControlP5(this);
-  button2.addButton("button2")
-    .setLabel("effect_2")
-    .setPosition(100, 570)
-    .setSize(100, 40);
-  
-  //ボタン3
-  button3 = new ControlP5(this);
-  button3.addButton("button3")
-    .setLabel("effect_3")
-    .setPosition(220, 510)
-    .setSize(100, 40);
-  
-  //ボタン4
-  button4 = new ControlP5(this);
-  button4.addButton("button4")
-    .setLabel("effect_4")
-    .setPosition(220, 570)
-    .setSize(100, 40);
+  String[] args = {"--location=100, 200", "SecondApplet"};
+  sa = new Controller();
+  PApplet.runSketch(args, sa);
   
   //fpsは60
   frameRate(fps);
-  hoge = fps;  
+  hoge = fps;   //<>//
 }
 
 void draw() {
   background(255, 0, 0);
   
-  if(judge) {
+  if(sa.judge) {
     effect1();
   }
-  if(judge2) {
+  if(sa.judge2) {
     effect2();
   }
-  if(judge3) {
+  if(sa.judge3) {
     effect2();
   }
-  if(judge4) {
+  if(sa.judge4) {
     effect1();
   }
   
-  GUI();
-  
-  tempo(BPM);
+  tempo(sa.BPM);
 }
 
 void effect1() {
@@ -100,48 +57,11 @@ void effect2() {
   rect(120, 120, 240, 240);
 }
 
-void GUI() {
-  noStroke();
-  fill(0);
-  rect(0, 480, 480, 160);
-}
 
 void tempo(float _BPM) {
    huga = _BPM / 60;
    hoge = hoge - huga;
   if(hoge < 0) {
     hoge = fps;
-  }
-}
-
-void button1() {
-  if(judge == false) {
-    judge = true;
-  } else {
-    judge = false;
-  }
-}
-
-void button2() {
-  if(judge2 == false) {
-    judge2 = true;
-  } else {
-    judge2 = false;
-  }
-}
-
-void button3() {
-  if(judge3 == false) {
-    judge3 = true;
-  } else {
-    judge3 = false;
-  }
-}
-
-void button4() {
-  if(judge4 == false) {
-    judge4 = true;
-  } else {
-    judge4 = false;
   }
 }
