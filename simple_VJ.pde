@@ -95,7 +95,13 @@ void effect3() {
   color lc = lerpColor(c1, c2, t);
   pushMatrix();
   noFill();
-  stroke(lc);
+  if(sa.aCount == 3) {
+    float a1 = map(sa.a, 0, 100, 0, 255);
+    stroke(lc, a1);
+  } else if(sa.aCount2 == 3) {
+    float a2 = map(sa.a, 0, 100, 255, 0);
+    stroke(lc, a2);
+  }
   translate(width/2, height/2);
   rotate(radians(angle));
   rect(-75, -75, 150, 150);
@@ -108,7 +114,13 @@ void effect4() {
   float t = map(hoge, fps, 0, 1.0, 0.0);
   float size = map(t, 1.0, 0.0, 0, 500);
   noFill();
-  stroke(0, 255, 255);
+  if(sa.aCount == 4) {
+    float a1 = map(sa.a, 0, 100, 0, 255);
+    stroke(0, 255, 255, a1);
+  } else if(sa.aCount2 == 4) {
+    float a2 = map(sa.a, 0, 100, 255, 0);
+    stroke(0, 255, 255, a2);
+  }
   ellipse(width/2, height/2, size, size);
 }
 
